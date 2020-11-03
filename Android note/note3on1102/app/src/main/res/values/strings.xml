@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">note3on1102</string>
+    <string name="app_name">ActivityExample</string>
+    <string name="title">Android App Programming</string>
+    <string name="button1">Broadcast Now</string>
 </resources>
