@@ -1,2 +1,0 @@
-include ':app'
-rootProject.name = "note 1102"
