@@ -1,6 +1,0 @@
-<resources>
-    <string name="app_name">note1116_1</string>
-    <string name="title">Android App Programming</string>
-    <string name="button1">ADD STUDENT</string>
-    <string name="button2">GET STUDENT INFO</string>
-</resources>
