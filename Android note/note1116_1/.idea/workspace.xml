@@ -10,15 +10,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="060ee49d-b3ef-4fc3-b5d4-5492256d35ef" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../SuziesTravelDiary/app/src/main/java/com/example/suziestraveldiary/diary_detail.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../SuziesTravelDiary/app/src/main/java/com/example/suziestraveldiary/diary_list.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../SuziesTravelDiary/app/src/main/java/com/example/suziestraveldiary/diary_map.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../SuziesTravelDiary/app/src/main/res/layout/activity_diary_detail.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../SuziesTravelDiary/app/src/main/res/layout/activity_diary_list.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../SuziesTravelDiary/app/src/main/res/layout/activity_diary_map.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/note1116_1.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SuziesTravelDiary/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SuziesTravelDiary/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SuziesTravelDiary/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SuziesTravelDiary/app/src/main/res/layout/activity_main.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
