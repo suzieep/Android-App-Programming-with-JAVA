@@ -8,10 +8,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class PostDBManager extends SQLiteOpenHelper {
     static final String POST_DB = "Posts.db";
-    static final String POST_TABLE = "POSTS";
+    static final String POST_TABLE = "Posts";
     Context context = null;
     private static PostDBManager dbManager = null;
-    static final String CREATE_DB = " CREATE TABLE " + POST_TABLE + " (_title INTEGER PRIMARY KEY AUTOINCREMENT, " + " _details TEXT, _image TEXT, _latitude TEXT NOT NULL, _longitude TEXT NOT NULL);";
+    static final String CREATE_DB = " CREATE TABLE " + POST_TABLE + " (_id INTEGER PRIMARY KEY AUTOINCREMENT,_title TEXT NOT NULL, " + " _details TEXT, _image TEXT, _latitude TEXT NOT NULL, _longitude TEXT NOT NULL);";
 
     public static PostDBManager getInstance(Context context) {
         if (dbManager == null) {

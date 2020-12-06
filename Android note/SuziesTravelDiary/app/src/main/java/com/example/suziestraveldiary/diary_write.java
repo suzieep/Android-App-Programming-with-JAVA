@@ -9,10 +9,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -26,6 +28,7 @@ public class diary_write extends AppCompatActivity {
     private static final int REQUEST_CODE = 0;
     private ImageView imageView;
     private String uri;
+    Button create2Button;
 
     private void setImage(Uri uri) {
         try {
@@ -52,7 +55,7 @@ public class diary_write extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diary_write);
         System.out.println("Android App : On Create");
-        imageView = findViewById(R.id.image);
+        imageView = findViewById(R.id.image_);
 
        imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,19 +66,33 @@ public class diary_write extends AppCompatActivity {
                 startActivityForResult(intent, REQUEST_CODE);
             }
         });
+
+        create2Button = (Button) findViewById(R.id.button3);
+        create2Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addPost();
+                Intent intent2 = new Intent(getApplicationContext(),MainActivity.class);
+                startActivityForResult(intent2,1001);
+            }
+        });
     }
 
-    public void addPost(View view) {
+    public void addPost() {
         ContentValues addValues = new ContentValues();
-        addValues.put(MyContentProvider._TITLE, ((EditText) findViewById(R.id.editText1)).getText().toString());
-        addValues.put(MyContentProvider._DETAILS, ((EditText) findViewById(R.id.editText2)).getText().toString());
+        System.out.println("addpost 들어");
+        addValues.put(MyContentProvider._TITLE, ((EditText) findViewById(R.id.title_text_)).getText().toString());
+        addValues.put(MyContentProvider._DETAILS, ((EditText) findViewById(R.id.detail_text_)).getText().toString());
         addValues.put(MyContentProvider._IMAGE, uri);
-        addValues.put(MyContentProvider._LATITUDE, ((EditText) findViewById(R.id.latitudeText)).getText().toString());
-        addValues.put(MyContentProvider._LONGITUDE, ((EditText) findViewById(R.id.longitudeText)).getText().toString());
+        addValues.put(MyContentProvider._LATITUDE, ((EditText) findViewById(R.id.latitude_text_)).getText().toString());
+        addValues.put(MyContentProvider._LONGITUDE, ((EditText) findViewById(R.id.longitude_text_)).getText().toString());
         getContentResolver().insert(MyContentProvider.CONTENT_URI, addValues);
-        Toast.makeText(getBaseContext(), "Record Added", Toast.LENGTH_LONG).show();
-    }
+        System.out.println("토스트 전");
 
+        Toast.makeText(getBaseContext(), "Record Added", Toast.LENGTH_LONG).show();
+        System.out.println("나가기 직전 s");
+    }
+/*
     public void getPosts(View view) {
         String[] columns = new String[]{"_title", "_details", "_image", "_latitude", "_longitude"};
         Cursor c = getContentResolver().query(MyContentProvider.CONTENT_URI, columns, null, null, null, null);
@@ -83,16 +100,17 @@ public class diary_write extends AppCompatActivity {
             EditText editMultipleText = findViewById(R.id.longitudeText);
             editMultipleText.setText("");
             while (c.moveToNext()) {
-                int id = c.getInt(0);
-                String number = c.getString(1);
-                String name = c.getString(2);
-                String phone = c.getString(3);
-                editMultipleText.append("id: " + id + "\n number: " + number + "\n name: " + name + "\n phone: " + phone + "\n");
+                String title = c.getString(0);
+                String detail = c.getString(1);
+                String image = c.getString(2);
+                String latitude = c.getString(3);
+                String longitude = c.getString(4);
+                editMultipleText.append("id: " + title + "\n number: " + detail + "\n name: " + image + "\n la/long: " + latitude + longitude+"\n");
             }
             editMultipleText.append("\n Total : " + c.getCount());
             c.close();
         }
-    }
+    }*/
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

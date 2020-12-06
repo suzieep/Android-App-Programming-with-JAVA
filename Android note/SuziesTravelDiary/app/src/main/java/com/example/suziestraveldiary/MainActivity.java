@@ -26,8 +26,17 @@ public class MainActivity extends AppCompatActivity {
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent("com.example.suziestraveldiary.LAUNCH", Uri.parse("http://www.dongguk.edu"));
-                startActivity(intent);
+                Intent intent3 = new Intent(getApplicationContext(),diary_write.class);
+                startActivityForResult(intent3,1001);
+            }
+        });
+
+        createButton = (Button) findViewById(R.id.button2);
+        createButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent3 = new Intent(getApplicationContext(),diary_list.class);
+                startActivityForResult(intent3,1001);
             }
         });
     }

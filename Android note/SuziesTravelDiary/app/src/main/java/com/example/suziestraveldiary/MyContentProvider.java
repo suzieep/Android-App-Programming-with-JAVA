@@ -6,9 +6,10 @@ import android.database.Cursor;
 import android.net.Uri;
 
 public class MyContentProvider extends ContentProvider {
-    static final String PROVIDER_NAME ="com.example.suziestraveldiary.MyContentProvider";
+    static final String PROVIDER_NAME =".MyContentProvider";
     static final String URL = "content://" + PROVIDER_NAME +"/post";
     static final Uri CONTENT_URI = Uri.parse(URL);
+    static final String _ID = "_id";
     static final String _TITLE = "_title";
     static final String _DETAILS = "_details";
     static final String _IMAGE = "_image";
@@ -18,42 +19,37 @@ public class MyContentProvider extends ContentProvider {
     public MyContentProvider() {
     }
 
+
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        // Implement this to handle requests to delete one or more rows.
-        throw new UnsupportedOperationException("Not yet implemented");
+        return dbManager.delete(selection, selectionArgs);
     }
 
     @Override
     public String getType(Uri uri) {
-        // TODO: Implement this to handle requests for the MIME type of the data
-        // at the given URI.
-        throw new UnsupportedOperationException("Not yet implemented");
+        return null;
     }
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
-        // TODO: Implement this to handle requests to insert a new row.
-        throw new UnsupportedOperationException("Not yet implemented");
+        long rowid = dbManager.insert(values);
+        return null;
     }
 
     @Override
     public boolean onCreate() {
-        // TODO: Implement this to initialize your content provider on startup.
-        return false;
+        dbManager = PostDBManager.getInstance(getContext());
+        return true;
     }
 
     @Override
-    public Cursor query(Uri uri, String[] projection, String selection,
-                        String[] selectionArgs, String sortOrder) {
-        // TODO: Implement this to handle query requests from clients.
-        throw new UnsupportedOperationException("Not yet implemented");
+    public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
+        return dbManager.query(projection, selection, selectionArgs, null, null, sortOrder);
     }
 
     @Override
-    public int update(Uri uri, ContentValues values, String selection,
-                      String[] selectionArgs) {
-        // TODO: Implement this to handle requests to update one or more rows.
+    public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 }
+
