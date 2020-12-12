@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">myThread</string>
+    <string name="app_name">My Camera Application 02</string>
+    <string name="button_text">이미지 다운로드</string>
+    <string name="image_address">https://upload.wikimedia.org/wikipedia/commons/c/c2/DONGGUK_UNIVERSITY_팔정도.jpg</string>
 </resources>
