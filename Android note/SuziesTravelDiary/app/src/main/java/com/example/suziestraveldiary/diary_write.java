@@ -26,15 +26,16 @@ import java.io.InputStream;
 public class diary_write extends AppCompatActivity {
     String msg = " ------- : ";
     private static final int REQUEST_CODE = 0;
-    private ImageView imageView;
-    private String uri;
+    private ImageView imagePut;
+    private String uri_string;
+    private Uri uri_uri;
     Button create2Button;
 
     private void setImage(Uri uri) {
         try {
             InputStream in = getContentResolver().openInputStream(uri);
             Bitmap bitmap = BitmapFactory.decodeStream(in);
-            imageView.setImageBitmap(bitmap);
+            imagePut.setImageBitmap(bitmap);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -55,9 +56,9 @@ public class diary_write extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diary_write);
         System.out.println("Android App : On Create");
-        imageView = findViewById(R.id.image_);
+        imagePut = findViewById(R.id.image_);
 
-       imageView.setOnClickListener(new View.OnClickListener() {
+        imagePut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
@@ -66,7 +67,7 @@ public class diary_write extends AppCompatActivity {
                 startActivityForResult(intent, REQUEST_CODE);
             }
         });
-
+        sendPicture(uri_uri);
         create2Button = (Button) findViewById(R.id.button3);
         create2Button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +84,7 @@ public class diary_write extends AppCompatActivity {
         System.out.println("addpost 들어");
         addValues.put(MyContentProvider._TITLE, ((EditText) findViewById(R.id.title_text_)).getText().toString());
         addValues.put(MyContentProvider._DETAILS, ((EditText) findViewById(R.id.detail_text_)).getText().toString());
-        addValues.put(MyContentProvider._IMAGE, uri);
+        addValues.put(MyContentProvider._IMAGE, uri_string);
         addValues.put(MyContentProvider._LATITUDE, ((EditText) findViewById(R.id.latitude_text_)).getText().toString());
         addValues.put(MyContentProvider._LONGITUDE, ((EditText) findViewById(R.id.longitude_text_)).getText().toString());
         getContentResolver().insert(MyContentProvider.CONTENT_URI, addValues);
@@ -92,25 +93,6 @@ public class diary_write extends AppCompatActivity {
         Toast.makeText(getBaseContext(), "Record Added", Toast.LENGTH_LONG).show();
         System.out.println("나가기 직전 s");
     }
-/*
-    public void getPosts(View view) {
-        String[] columns = new String[]{"_title", "_details", "_image", "_latitude", "_longitude"};
-        Cursor c = getContentResolver().query(MyContentProvider.CONTENT_URI, columns, null, null, null, null);
-        if (c != null) {
-            EditText editMultipleText = findViewById(R.id.longitudeText);
-            editMultipleText.setText("");
-            while (c.moveToNext()) {
-                String title = c.getString(0);
-                String detail = c.getString(1);
-                String image = c.getString(2);
-                String latitude = c.getString(3);
-                String longitude = c.getString(4);
-                editMultipleText.append("id: " + title + "\n number: " + detail + "\n name: " + image + "\n la/long: " + latitude + longitude+"\n");
-            }
-            editMultipleText.append("\n Total : " + c.getCount());
-            c.close();
-        }
-    }*/
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -119,7 +101,8 @@ public class diary_write extends AppCompatActivity {
             switch (requestCode) {
                 case GALLERY_CODE:
                     sendPicture(data.getData());
-                    uri = getRealPathFromURI(data.getData());//갤러리에서 가져오기
+                    uri_uri=data.getData();
+                    uri_string = getRealPathFromURI(data.getData());//갤러리에서 가져오기
                     break;
 
                 default:
@@ -140,7 +123,7 @@ public class diary_write extends AppCompatActivity {
         int exifDegree = exifOrientationToDegrees(exifOrientation);
         Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
         //경로를 통해 비트맵으로 전환
-        imageView.setImageBitmap(rotate(bitmap, exifDegree));
+        imagePut.setImageBitmap(rotate(bitmap, exifDegree));
         // 이미지 뷰에 비트맵 넣기
     }
 

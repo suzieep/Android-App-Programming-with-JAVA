@@ -4,9 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class diary_detail extends AppCompatActivity {
@@ -15,13 +19,32 @@ public class diary_detail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diary_detail);
-/*
+
+        TextView title_view = findViewById(R.id.title_text);
+        TextView detail_view = findViewById(R.id.detail_text);
+        TextView latitude_view = findViewById(R.id.latitude_text);
+        TextView longitude_view = findViewById(R.id.longitude_text);
+        ImageView image_view = findViewById(R.id.image_);
+
+        title_view.setText("");
+        detail_view.setText("");
+        longitude_view.setText("");
+        latitude_view.setText("");
+
         Intent secondIntent = getIntent();
-        String travel_pic = secondIntent.getStringExtra("travel_pic");
+        Integer travel_pic = secondIntent.getIntExtra("travel_pic",R.drawable.ic_launcher_background);
         String title_text = secondIntent.getStringExtra("title_text");
         String detail_text = secondIntent.getStringExtra("detail_text");
-        int latitude_int = secondIntent.getIntExtra("latitude_int", 0);
-        int longitude_int = secondIntent.getIntExtra("longitude_int", 0);*/
+        String latitude_int = secondIntent.getStringExtra("latitude_int");
+        String longitude_int = secondIntent.getStringExtra("longitude_int");
+
+        title_view.setText(title_text);
+        detail_view.setText(detail_text);
+        longitude_view.setText(longitude_int);
+        latitude_view.setText(latitude_int);
+        Bitmap bitmap = BitmapFactory.decodeFile(travel_pic);
+        //경로를 통해 비트맵으로 전환
+        image_view.setImageBitmap(bitmap);
 
     }
 

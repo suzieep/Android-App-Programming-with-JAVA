@@ -1,6 +1,9 @@
 package com.example.suziestraveldiary;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.ExifInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class MyAdapter extends BaseAdapter {
@@ -41,13 +45,18 @@ public class MyAdapter extends BaseAdapter {
     public View getView(int position, View converView, ViewGroup parent) {
         View view = mLayoutInflater.inflate(R.layout.activity_single_list, null);
 
-        ImageView imageView = (ImageView)view.findViewById(R.id.poster);
-        TextView movieName = (TextView)view.findViewById(R.id.movieName);
-        TextView grade = (TextView)view.findViewById(R.id.grade);
+        ImageView image = (ImageView) view.findViewById(R.id.image_);
+        TextView title = (TextView) view.findViewById(R.id.title_);
+        TextView detail = (TextView) view.findViewById(R.id.detail_);
 
-        imageView.setImageResource(sample.get(position).getPoster());
-        movieName.setText(sample.get(position).getMovieName());
-        grade.setText(sample.get(position).getGrade());
+
+        Bitmap bitmap = BitmapFactory.decodeFile(sample.get(position).getImage());
+        //경로를 통해 비트맵으로 전환
+        image.setImageBitmap(bitmap);
+        // 이미지 뷰에 비트맵 넣기
+        title.setText(sample.get(position).getTitleName());
+        detail.setText(sample.get(position).getDetail());
+
 
         return view;
     }

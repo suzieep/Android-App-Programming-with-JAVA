@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">userInterface</string>
+    <string name="logo_explanation">logo</string>
+    <string name="text_explanation">text</string>
+</resources>
