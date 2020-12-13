@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.ExifInterface;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -50,7 +52,7 @@ public class MyAdapter extends BaseAdapter {
         TextView detail = (TextView) view.findViewById(R.id.detail_);
 
 
-        Bitmap bitmap = BitmapFactory.decodeFile(sample.get(position).getImage());
+        Bitmap bitmap = StringToBitmap(sample.get(position).getImage());
         //경로를 통해 비트맵으로 전환
         image.setImageBitmap(bitmap);
         // 이미지 뷰에 비트맵 넣기
@@ -59,5 +61,15 @@ public class MyAdapter extends BaseAdapter {
 
 
         return view;
+    }
+    public static Bitmap StringToBitmap(String encodedString) {
+        try {
+            byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            return bitmap;
+        } catch (Exception e) {
+            e.getMessage();
+            return null;
+        }
     }
 }

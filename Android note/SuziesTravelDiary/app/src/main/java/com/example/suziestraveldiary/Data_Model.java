@@ -15,17 +15,11 @@ public class Data_Model {
         this.longitude_listed = longitude_listed;
     }
 
-    public String getImage()
-    {
-
-        return this.image_listed;
-    }
-
+    public String getImage() { return this.image_listed; }
     public String getTitleName()
     {
         return this.title_listed;
     }
-
     public String getDetail()
     {
         return this.detail_listed;
